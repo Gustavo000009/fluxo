@@ -1,0 +1,16 @@
+target/
+dados/
+config/
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.jks
+*.db
+*.mv.db
+*.trace.db
+*.zip
+*.jar
+.idea/
+.vscode/

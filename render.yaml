@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: fluxo
+    runtime: docker
+    plan: free
+    healthCheckPath: /
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: cloud
+      - key: FLUXO_DATABASE_URL
+        sync: false
+      - key: FLUXO_DATABASE_USUARIO
+        sync: false
+      - key: FLUXO_DATABASE_SENHA
+        sync: false
+      - key: FLUXO_LOGIN_CHAVE
+        generateValue: true
+      - key: FLUXO_URL_PUBLICA
+        sync: false
+      - key: FLUXO_INFINITEPAY_HABILITADO
+        value: "false"

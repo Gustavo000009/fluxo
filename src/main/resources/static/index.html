@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="referrer" content="no-referrer">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fluxo · Organize seu dinheiro</title>
+  <meta name="theme-color" content="#f5f7f4">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" type="image/png" href="/img/carteira-verde.png?v=2">
+  <script>
+// Executado antes do CSS para aplicar a preferência sem piscar o tema errado.
+(() => {
+  const chave = 'fluxo-tema';
+  const sistema = window.matchMedia('(prefers-color-scheme: dark)');
+  let preferencia = null;
+  try {
+    const salva = localStorage.getItem(chave);
+    if (salva === 'light' || salva === 'dark') preferencia = salva;
+  } catch (_) { /* O tema também funciona com armazenamento bloqueado. */ }
+
+  function aplicar(tema) {
+    document.documentElement.dataset.theme = tema;
+    document.documentElement.style.colorScheme = tema;
+    const escuro = tema === 'dark';
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = escuro ? '#0c1421' : '#f5f7f4';
+    const botao = document.getElementById('themeToggle');
+    if (botao) {
+      botao.setAttribute('aria-label', escuro ? 'Ativar modo claro' : 'Ativar modo escuro');
+      botao.title = escuro ? 'Ativar modo claro' : 'Ativar modo escuro';
+      botao.querySelector('[data-theme-icon]').textContent = escuro ? '☀️' : '🌙';
+
+    }
+    document.dispatchEvent(new CustomEvent('fluxo:tema', { detail: { tema } }));
+  }
+
+  aplicar(preferencia || (sistema.matches ? 'dark' : 'light'));
+  document.addEventListener('click', e => {
+    if (!e.target.closest?.('#themeToggle')) return;
+    preferencia = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem(chave, preferencia); } catch (_) { /* Mantém nesta sessão. */ }
+    aplicar(preferencia);
+  });
+  document.addEventListener('DOMContentLoaded', () => aplicar(document.documentElement.dataset.theme));
+  document.addEventListener('fluxo:botao-pronto', () => aplicar(document.documentElement.dataset.theme));
+  sistema.addEventListener('change', e => {
+    if (!preferencia) aplicar(e.matches ? 'dark' : 'light');
+  });
+  window.addEventListener('storage', e => {
+    if (e.key !== chave && e.key !== null) return;
+    preferencia = e.newValue === 'light' || e.newValue === 'dark' ? e.newValue : null;
+    aplicar(preferencia || (sistema.matches ? 'dark' : 'light'));
+  });
+})();
+
+</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/styles.css?v=gestao-conta-1">
+  <script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<link rel="manifest" href="/manifest.webmanifest"><link rel="apple-touch-icon" href="/icons/fluxo-verde-192.png"><link rel="stylesheet" href="/css/upgrade.css?v=gestao-conta-1"><link rel="stylesheet" href="/css/visual.css?v=gestao-conta-1">
+</head>
+<body>
+  <a class="skip-link" href="#view">Ir para o conteúdo</a>
+  <div id="app">
+    <aside class="sidebar">
+      <a class="brand" href="#dashboard" aria-label="Fluxo — página inicial"><img class="brand-logo" src="/img/carteira-verde.png?v=2" alt="" width="42" height="42"> Fluxo</a>
+      <span class="nav-caption">MEU PLANEJAMENTO</span><nav id="navSide" aria-label="Navegação principal"></nav><div class="sidebar-note"><span aria-hidden="true">🌱</span><strong>Um passo de cada vez.</strong><p>Pequenas escolhas hoje.<br>Mais tranquilidade amanhã.</p></div>
+    </aside>
+    <main class="main">
+      <div class="app-toolbar">
+        <a class="mobile-brand" href="#dashboard" aria-label="Fluxo — visão geral"><img src="/img/carteira-verde.png?v=2" alt="" width="36" height="36"><span>Fluxo</span></a>
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Ativar modo escuro"><span data-theme-icon aria-hidden="true">🌙</span></button>
+      </div>
+      <script>document.dispatchEvent(new Event("fluxo:botao-pronto"));</script>
+      <div id="view" tabindex="-1"></div>
+    </main>
+    <nav class="bottom-nav" id="navBottom" aria-label="Navegação móvel"></nav>
+  </div>
+  <dialog id="modal"></dialog>
+  <div id="toasts" role="status" aria-live="polite"></div>
+  <script src="/js/conta.js?v=gestao-conta-1"></script><script src="/js/pagamentos.js?v=gestao-conta-1"></script><script src="/js/app.js?v=gestao-conta-1"></script><script src="/js/recursos.js?v=gestao-conta-1"></script><script src="/js/visual.js?v=gestao-conta-1"></script><script>FluxoConta.iniciar();</script>
+</body>
+</html>
