@@ -3,3 +3,5 @@
 [hidden]{display:none!important}.demo-profile{display:grid;gap:16px}.demo-profile .avatar-letra{display:grid;place-items:center}
 @media(max-width:650px){.portfolio-notice{padding:10px 12px;gap:4px 12px;font-size:.65rem;margin-bottom:14px}.portfolio-notice span{flex-basis:100%;order:2}.portfolio-notice strong{margin-right:auto}}
 .demo-badge{border:1px solid var(--line);border-radius:24px;padding:5px 10px;background:var(--surface);color:var(--muted);font:inherit;font-size:.65rem;cursor:pointer;margin-right:auto}.demo-avatars{display:flex;gap:12px;flex-wrap:wrap}.demo-avatars button{border:1px solid var(--line);cursor:pointer}.demo-avatar-mini{font-size:1.1rem}.app-toolbar .mobile-brand{order:-1}.app-toolbar i[data-lucide]{display:inline-flex}@media(max-width:650px){.demo-badge{margin-left:auto;margin-right:0;padding:5px 8px}.account-button{margin-left:0}}
+
+@media(max-width:900px){.app-toolbar{display:grid;grid-template-columns:minmax(0,1fr) auto 44px auto;gap:6px}.demo-badge{margin:0}.account-button{max-width:100px;margin-left:0;padding:8px 10px}.mobile-brand{font-size:1.1rem;gap:5px}}
