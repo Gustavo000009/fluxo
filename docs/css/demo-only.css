@@ -1,0 +1,4 @@
+.portfolio-notice{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;border:1px solid var(--line);border-radius:16px;padding:12px 16px;margin-bottom:20px;font-size:.72rem;color:var(--muted);background:var(--card)}
+.portfolio-notice strong{color:var(--g)}.portfolio-notice span{flex:1;min-width:180px}.portfolio-notice button,.portfolio-notice a{background:none;border:0;color:var(--g);font:inherit;font-weight:700;cursor:pointer;text-decoration:underline}.portfolio-notice button{padding:8px}
+[hidden]{display:none!important}.demo-profile{display:grid;gap:16px}.demo-profile .avatar-letra{display:grid;place-items:center}
+@media(max-width:650px){.portfolio-notice{padding:10px 12px;gap:4px 12px;font-size:.65rem;margin-bottom:14px}.portfolio-notice span{flex-basis:100%;order:2}.portfolio-notice strong{margin-right:auto}}
