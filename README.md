@@ -4,7 +4,13 @@
 
 Aplicação web para organizar renda, despesas e metas, com histórico mensal e interface adaptada a celulares. Projeto em desenvolvimento para portfólio.
 
-## Funcionalidades
+## Demonstração online
+
+[Abrir o Fluxo no navegador](https://gustavo000009.github.io/fluxo/)
+
+A pasta `docs/` contém uma demonstração estática para portfólio, publicada pelo GitHub Pages. É possível explorar meses, simular gastos e entradas extras, marcar contas como pagas, ajustar o orçamento e acompanhar metas. Os dados são fictícios, ficam apenas na memória da aba e são descartados ao recarregar. Não há cadastro, pagamento ou conexão com o banco de usuários nessa demonstração.
+
+## Funcionalidades do aplicativo completo
 
 - Cadastro, login, recuperação de senha e registro de aceite dos termos.
 - Organização do orçamento por necessidades, desejos e investimentos.
